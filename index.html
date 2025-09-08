@@ -10,6 +10,12 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://arcastudio.app/">
   <meta name="theme-color" content="#0f172a">
+  <meta property="og:image" content="https://arcastudio.app/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://arcastudio.app/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0f172a;
@@ -19,13 +25,22 @@
       --card: #111827;
       --border: #1f2937;
     }
+    /* Light theme overrides */
+    :root[data-theme="light"] {
+      --bg: #ffffff;
+      --fg: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --card: #ffffff;
+      --border: #e5e7eb;
+    }
     * { box-sizing: border-box; }
     html, body {
       margin: 0;
       padding: 0;
       background: var(--bg);
       color: var(--fg);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -49,14 +64,20 @@
     .nav-actions { display: flex; align-items: center; gap: 12px; }
     .lang { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--fg); cursor: pointer; }
     .lang:hover { border-color: var(--accent); color: var(--accent); }
-    .hero { padding: 96px 0 72px; text-align: center; }
-    .hero h1 { font-size: 40px; line-height: 1.2; margin: 0 0 12px; }
+    .hero { padding: 96px 0 72px; text-align: center; position: relative; overflow: hidden; }
+    .hero-brand { font-size: 24px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
+    .hero h1 { font-size: 40px; line-height: 1.2; margin: 0 0 12px; background: linear-gradient(90deg, #38bdf8, #a78bfa); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .hero p { color: var(--muted); margin: 0 auto 28px; max-width: 720px; }
+    .shape { position: absolute; filter: blur(40px); opacity: .35; pointer-events: none; }
+    .shape.s1 { width: 420px; height: 420px; left: -120px; top: -100px; background: radial-gradient(circle at 30% 30%, #38bdf8, transparent 60%); }
+    .shape.s2 { width: 380px; height: 380px; right: -140px; top: 0; background: radial-gradient(circle at 70% 40%, #a78bfa, transparent 60%); }
     .cta {
       display: inline-block; padding: 12px 18px; border-radius: 10px;
       background: var(--accent); color: #0b1324; font-weight: 600;
       box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
+      transition: transform .15s ease, box-shadow .15s ease;
     }
+    .cta:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(56,189,248,.35); }
     section { padding: 56px 0; }
     h2 { font-size: 28px; margin: 0 0 10px; }
     .section-lead { color: var(--muted); margin: 0 0 28px; }
@@ -66,7 +87,10 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 22px;
+      transition: border-color .15s ease, transform .15s ease;
     }
+    .card:hover { border-color: #334155; transform: translateY(-2px); }
+    .screenshot { height: 160px; border-radius: 12px; border: 1px solid var(--border); background: linear-gradient(135deg, rgba(56,189,248,.15), rgba(167,139,250,.15)); display:flex; align-items:center; justify-content:center; color: var(--muted); font-size: 14px; margin-bottom: 12px; }
     .span-6 { grid-column: span 6; }
     .span-4 { grid-column: span 4; }
     .muted { color: var(--muted); }
@@ -90,14 +114,17 @@
           <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
         </nav>
         <button class="lang" id="lang-toggle" aria-label="Dil / Language">TR</button>
+        <button class="lang" id="theme-toggle" aria-label="Tema">🌙</button>
       </div>
     </div>
   </header>
 
   <main>
     <section class="hero container" aria-labelledby="hero-title">
+      <div class="shape s1"></div>
+      <div class="shape s2"></div>
+      <div class="hero-brand">ARCA STUDIO</div>
       <h1 id="hero-title" data-i18n="hero.title">Mobil Oyun ve Uygulama Stüdyosu</h1>
-      <p data-i18n="hero.lead">ARCA STUDIO, mobilde sade, akıcı ve etkileyici deneyimler üretir. Oyunlardan üretkenlik uygulamalarına, fikirden yayına kadar tüm süreci üstleniriz.</p>
       <a class="cta" href="mailto:info@arcastudio.app">info@arcastudio.app</a>
     </section>
 
@@ -141,6 +168,7 @@
         <p class="section-lead" id="games-lead">Geliştirdiğimiz mobil oyunlar hakkında kısa bilgiler ve bağlantılar.</p>
         <div class="grid">
           <div class="card span-6">
+            <div class="screenshot">Ekran görüntüsü (yakında)</div>
             <h3>Letter Merge</h3>
             <p class="muted" id="games-lm-text">Harfleri birleştirerek ilerlediğin, hızlı ve rahatlatıcı bir bulmaca deneyimi.</p>
             <div style="display:flex; gap:12px; margin-top:8px;">
@@ -176,7 +204,7 @@
         tr: {
           meta: { title: 'ARCA STUDIO — Mobil Oyun ve Uygulama', desc: 'ARCA STUDIO: Mobil oyun ve mobil uygulama geliştirme stüdyosu. Minimalist ve performans odaklı dijital deneyimler.' },
           nav: { about: 'Hakkımızda', services: 'Hizmetler', contact: 'İletişim' },
-          hero: { title: 'Mobil Oyun ve Uygulama Stüdyosu', lead: 'ARCA STUDIO, mobilde sade, akıcı ve etkileyici deneyimler üretir. Oyunlardan üretkenlik uygulamalarına, fikirden yayına kadar tüm süreci üstleniriz.' },
+          hero: { title: 'Mobil Oyun ve Uygulama Stüdyosu', lead: 'Mobilde yalın, akıcı ve keyifli deneyimler tasarlıyoruz. Fikirleri hızla prototipe çevirip, veriye dayanarak geliştiriyor ve dünyaya sunuyoruz.' },
           about: {
             title: 'Hakkımızda',
             lead: 'Minimalist tasarım, yüksek performans ve kullanıcı odaklı yaklaşım. Ürünlerimizi veriye ve geri bildirime göre sürekli geliştiriyoruz.',
@@ -196,7 +224,7 @@
         en: {
           meta: { title: 'ARCA STUDIO — Mobile Games & Apps', desc: 'ARCA STUDIO: Mobile game and app development studio. Minimalist, performance‑oriented digital experiences.' },
           nav: { about: 'About', services: 'Services', contact: 'Contact' },
-          hero: { title: 'Mobile Game and App Studio', lead: 'ARCA STUDIO crafts simple, fluid and engaging mobile experiences. From games to productivity apps, we take ideas from concept to launch.' },
+          hero: { title: 'Mobile Game and App Studio', lead: 'We craft simple, fluid and delightful mobile experiences. From idea to launch, we prototype fast, iterate on data and ship to the world.' },
           about: {
             title: 'About',
             lead: 'Minimal design, high performance, and a user‑first approach. We iterate continuously based on data and feedback.',
@@ -254,6 +282,16 @@
           applyTranslations(current);
         });
       }
+    })();
+  </script>
+  <script>
+    (function(){
+      const root = document.documentElement;
+      const themeBtn = document.getElementById('theme-toggle');
+      function applyTheme(t){ root.setAttribute('data-theme', t); if (themeBtn) themeBtn.textContent = t==='light'?'🌙':'☀️'; }
+      let theme = localStorage.getItem('theme') || 'dark';
+      applyTheme(theme);
+      if (themeBtn) themeBtn.addEventListener('click', ()=>{ theme = (localStorage.getItem('theme')||'dark')==='dark'?'light':'dark'; localStorage.setItem('theme', theme); applyTheme(theme); });
     })();
   </script>
   <script>
