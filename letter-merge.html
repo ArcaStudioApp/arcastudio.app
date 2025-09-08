@@ -120,5 +120,11 @@
       if (toggle) toggle.addEventListener('click', () => { current = current==='tr'?'en':'tr'; localStorage.setItem('lang', current); applyTranslations(current); });
     })();
   </script>
+  <script>
+    (function(){
+      const brand = document.querySelector('.brand');
+      if (brand) { brand.style.cursor = 'pointer'; brand.addEventListener('click', function(){ window.location.href = './index.html'; }); }
+    })();
+  </script>
 </body>
 </html>
