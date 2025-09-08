@@ -1,10 +1,242 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Test Sayfa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ARCA STUDIO — Mobil Oyun ve Uygulama</title>
+  <meta name="description" content="ARCA STUDIO: Mobil oyun ve mobil uygulama geliştirme stüdyosu. Minimalist ve performans odaklı dijital deneyimler.">
+  <meta property="og:title" content="ARCA STUDIO">
+  <meta property="og:description" content="Mobil oyun ve mobil uygulama geliştirme stüdyosu.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://arcastudio.app/">
+  <meta name="theme-color" content="#0f172a">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --fg: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --card: #111827;
+      --border: #1f2937;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: saturate(180%) blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .brand { font-weight: 700; letter-spacing: 0.5px; }
+    .nav a { color: var(--fg); opacity: 0.9; }
+    .nav-links { display: flex; gap: 16px; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .lang { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--fg); cursor: pointer; }
+    .lang:hover { border-color: var(--accent); color: var(--accent); }
+    .hero { padding: 96px 0 72px; text-align: center; }
+    .hero h1 { font-size: 40px; line-height: 1.2; margin: 0 0 12px; }
+    .hero p { color: var(--muted); margin: 0 auto 28px; max-width: 720px; }
+    .cta {
+      display: inline-block; padding: 12px 18px; border-radius: 10px;
+      background: var(--accent); color: #0b1324; font-weight: 600;
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
+    }
+    section { padding: 56px 0; }
+    h2 { font-size: 28px; margin: 0 0 10px; }
+    .section-lead { color: var(--muted); margin: 0 0 28px; }
+    .grid { display: grid; gap: 16px; grid-template-columns: repeat(12, 1fr); }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .muted { color: var(--muted); }
+    footer { padding: 36px 0; border-top: 1px solid var(--border); color: var(--muted); }
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 32px; }
+      .span-6, .span-4 { grid-column: span 12; }
+      .nav-links { display: none; }
+    }
+  </style>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230f172a'/%3E%3Cpath d='M24 68L50 18l26 50H24z' fill='%2338bdf8'/%3E%3C/svg%3E">
 </head>
 <body>
-  <h1>Merhaba Dünya!</h1>
+  <header>
+    <div class="container nav">
+      <div class="brand">ARCA STUDIO</div>
+      <div class="nav-actions">
+        <nav class="nav-links">
+          <a href="#hakkimizda" data-i18n="nav.about">Hakkımızda</a>
+          <a href="#hizmetler" data-i18n="nav.services">Hizmetler</a>
+          <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
+        </nav>
+        <button class="lang" id="lang-toggle" aria-label="Dil / Language">TR</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" aria-labelledby="hero-title">
+      <h1 id="hero-title" data-i18n="hero.title">Mobil Oyun ve Uygulama Stüdyosu</h1>
+      <p data-i18n="hero.lead">ARCA STUDIO, mobilde sade, akıcı ve etkileyici deneyimler üretir. Oyunlardan üretkenlik uygulamalarına, fikirden yayına kadar tüm süreci üstleniriz.</p>
+      <a class="cta" href="mailto:info@arcastudio.app">info@arcastudio.app</a>
+    </section>
+
+    <section id="hakkimizda">
+      <div class="container">
+        <h2 data-i18n="about.title">Hakkımızda</h2>
+        <p class="section-lead" data-i18n="about.lead">Minimalist tasarım, yüksek performans ve kullanıcı odaklı yaklaşım. Ürünlerimizi veriye ve geri bildirime göre sürekli geliştiriyoruz.</p>
+        <div class="grid">
+          <div class="card span-6">
+            <h3 data-i18n="about.vision.title">Vizyon</h3>
+            <p class="muted" data-i18n="about.vision.text">Mobilde global ölçekte sevilen, erişilebilir ve sürdürülebilir ürünler üretmek.</p>
+          </div>
+          <div class="card span-6">
+            <h3 data-i18n="about.approach.title">Yaklaşım</h3>
+            <p class="muted" data-i18n="about.approach.text">Hızlı prototipleme, yalın tasarım ve ölçülebilir hedefler ile değer odaklı geliştirme.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="hizmetler">
+      <div class="container">
+        <h2 data-i18n="services.title">Hizmetler</h2>
+        <p class="section-lead" data-i18n="services.lead">Uçtan uca geliştirme: fikir doğrulama, tasarım, geliştirme, test ve yayın.</p>
+        <div class="grid">
+          <div class="card span-4">
+            <h3 data-i18n="services.game.title">Mobil Oyun</h3>
+            <p class="muted" data-i18n="services.game.text">Hyper‑casual ve casual türlerde hızlı prototipleme, core‑loop tasarımı, canlıya alma ve iterasyon.</p>
+          </div>
+          <div class="card span-4">
+            <h3 data-i18n="services.app.title">Mobil Uygulama</h3>
+            <p class="muted" data-i18n="services.app.text">iOS ve Android için performanslı, erişilebilir ve modern uygulamalar (native veya cross‑platform).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="iletisim">
+      <div class="container">
+        <h2 data-i18n="contact.title">İletişim</h2>
+        <p class="section-lead" data-i18n="contact.lead">Bir proje veya fikir mi var? Bize yazın.</p>
+        <div class="card">
+          <p><span data-i18n="contact.emailLabel">E-posta</span>: <a href="mailto:info@arcastudio.app">info@arcastudio.app</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small id="footer-text">© 2024 ARCA STUDIO — Tüm hakları saklıdır.</small>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const translations = {
+        tr: {
+          meta: { title: 'ARCA STUDIO — Mobil Oyun ve Uygulama', desc: 'ARCA STUDIO: Mobil oyun ve mobil uygulama geliştirme stüdyosu. Minimalist ve performans odaklı dijital deneyimler.' },
+          nav: { about: 'Hakkımızda', services: 'Hizmetler', contact: 'İletişim' },
+          hero: { title: 'Mobil Oyun ve Uygulama Stüdyosu', lead: 'ARCA STUDIO, mobilde sade, akıcı ve etkileyici deneyimler üretir. Oyunlardan üretkenlik uygulamalarına, fikirden yayına kadar tüm süreci üstleniriz.' },
+          about: {
+            title: 'Hakkımızda',
+            lead: 'Minimalist tasarım, yüksek performans ve kullanıcı odaklı yaklaşım. Ürünlerimizi veriye ve geri bildirime göre sürekli geliştiriyoruz.',
+            vision: { title: 'Vizyon', text: 'Mobilde global ölçekte sevilen, erişilebilir ve sürdürülebilir ürünler üretmek.' },
+            approach: { title: 'Yaklaşım', text: 'Hızlı prototipleme, yalın tasarım ve ölçülebilir hedefler ile değer odaklı geliştirme.' }
+          },
+          services: {
+            title: 'Hizmetler',
+            lead: 'Uçtan uca geliştirme: fikir doğrulama, tasarım, geliştirme, test ve yayın.',
+            game: { title: 'Mobil Oyun', text: 'Hyper‑casual ve casual türlerde hızlı prototipleme, core‑loop tasarımı, canlıya alma ve iterasyon.' },
+            app: { title: 'Mobil Uygulama', text: 'iOS ve Android için performanslı, erişilebilir ve modern uygulamalar (native veya cross‑platform).' },
+            consult: { title: 'Ürün Danışmanlığı', text: 'Pazar analizi, MVP planlama, büyüme stratejisi ve analitik altyapı kurulumu.' }
+          },
+          contact: { title: 'İletişim', lead: 'Bir proje veya fikir mi var? Bize yazın.', emailLabel: 'E-posta' },
+          footer: '© {year} ARCA STUDIO — Tüm hakları saklıdır.'
+        },
+        en: {
+          meta: { title: 'ARCA STUDIO — Mobile Games & Apps', desc: 'ARCA STUDIO: Mobile game and app development studio. Minimalist, performance‑oriented digital experiences.' },
+          nav: { about: 'About', services: 'Services', contact: 'Contact' },
+          hero: { title: 'Mobile Game and App Studio', lead: 'ARCA STUDIO crafts simple, fluid and engaging mobile experiences. From games to productivity apps, we take ideas from concept to launch.' },
+          about: {
+            title: 'About',
+            lead: 'Minimal design, high performance, and a user‑first approach. We iterate continuously based on data and feedback.',
+            vision: { title: 'Vision', text: 'Build accessible, sustainable products loved globally on mobile.' },
+            approach: { title: 'Approach', text: 'Rapid prototyping, lean design and measurable goals for value‑driven development.' }
+          },
+          services: {
+            title: 'Services',
+            lead: 'End‑to‑end delivery: validation, design, development, testing and launch.',
+            game: { title: 'Mobile Games', text: 'Rapid prototyping for hyper‑casual and casual, core loop design, go‑live and iteration.' },
+            app: { title: 'Mobile Apps', text: 'High‑performance, accessible, modern apps for iOS and Android (native or cross‑platform).' },
+            consult: { title: 'Product Consulting', text: 'Market analysis, MVP planning, growth strategy and analytics setup.' }
+          },
+          contact: { title: 'Contact', lead: 'Have a project or idea? Write to us.', emailLabel: 'Email' },
+          footer: '© {year} ARCA STUDIO — All rights reserved.'
+        }
+      };
+
+      function get(obj, path) {
+        return path.split('.').reduce((o, k) => (o && o[k] != null) ? o[k] : undefined, obj);
+      }
+
+      function applyTranslations(lang) {
+        const dict = translations[lang] || translations.tr;
+        document.documentElement.lang = lang;
+        document.title = dict.meta.title;
+        const metaDesc = document.querySelector('meta[name="description"]');
+        if (metaDesc) metaDesc.setAttribute('content', dict.meta.desc);
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          const value = get(dict, key);
+          if (typeof value === 'string') {
+            el.textContent = value;
+          }
+        });
+        const footer = document.getElementById('footer-text');
+        if (footer && dict.footer) {
+          footer.textContent = dict.footer.replace('{year}', String(new Date().getFullYear()));
+        }
+        const toggle = document.getElementById('lang-toggle');
+        if (toggle) toggle.textContent = lang.toUpperCase();
+      }
+
+      const stored = localStorage.getItem('lang');
+      const system = (navigator.language || '').toLowerCase().startsWith('tr') ? 'tr' : 'en';
+      let current = stored || system;
+      applyTranslations(current);
+      localStorage.setItem('lang', current);
+
+      const toggle = document.getElementById('lang-toggle');
+      if (toggle) {
+        toggle.addEventListener('click', () => {
+          current = current === 'tr' ? 'en' : 'tr';
+          localStorage.setItem('lang', current);
+          applyTranslations(current);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
