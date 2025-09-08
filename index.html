@@ -135,6 +135,23 @@
       </div>
     </section>
 
+    <section id="oyunlar">
+      <div class="container">
+        <h2 id="games-title">Oyunlar</h2>
+        <p class="section-lead" id="games-lead">Geliştirdiğimiz mobil oyunlar hakkında kısa bilgiler ve bağlantılar.</p>
+        <div class="grid">
+          <div class="card span-6">
+            <h3>Letter Merge</h3>
+            <p class="muted" id="games-lm-text">Harfleri birleştirerek ilerlediğin, hızlı ve rahatlatıcı bir bulmaca deneyimi.</p>
+            <div style="display:flex; gap:12px; margin-top:8px;">
+              <a class="cta" id="games-lm-details" href="letter-merge.html">Detaylar</a>
+              <a id="games-lm-privacy" href="privacy-letter-merge.html" class="muted" style="align-self:center;">Gizlilik Politikası</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="iletisim">
       <div class="container">
         <h2 data-i18n="contact.title">İletişim</h2>
@@ -236,6 +253,46 @@
           applyTranslations(current);
         });
       }
+    })();
+  </script>
+  <script>
+    (function(){
+      const lang = localStorage.getItem('lang') || ((navigator.language||'').toLowerCase().startsWith('tr') ? 'tr' : 'en');
+      // Insert Games nav link if missing
+      const nav = document.querySelector('.nav-links');
+      if (nav && !nav.querySelector('[data-nav-games]')) {
+        const a = document.createElement('a');
+        a.href = '#oyunlar';
+        a.setAttribute('data-nav-games','1');
+        a.textContent = lang === 'tr' ? 'Oyunlar' : 'Games';
+        nav.insertBefore(a, nav.lastElementChild); // before Contact
+      }
+      // Apply translations for games section
+      const apply = (l)=>{
+        const tr = {
+          title:'Oyunlar',
+          lead:'Geliştirdiğimiz mobil oyunlar hakkında kısa bilgiler ve bağlantılar.',
+          text:'Harfleri birleştirerek ilerlediğin, hızlı ve rahatlatıcı bir bulmaca deneyimi.',
+          details:'Detaylar', privacy:'Gizlilik Politikası'
+        };
+        const en = {
+          title:'Games',
+          lead:'Short info and links to the mobile games we build.',
+          text:'A fast and relaxing puzzle experience where you merge letters.',
+          details:'Details', privacy:'Privacy Policy'
+        };
+        const d = l==='tr'?tr:en;
+        const gt = (id, val)=>{ const el = document.getElementById(id); if (el) el.textContent = val; };
+        gt('games-title', d.title);
+        gt('games-lead', d.lead);
+        gt('games-lm-text', d.text);
+        const det = document.getElementById('games-lm-details'); if (det) det.textContent = d.details;
+        const pv = document.getElementById('games-lm-privacy'); if (pv) pv.textContent = d.privacy;
+        const navGames = document.querySelector('[data-nav-games]'); if (navGames) navGames.textContent = l==='tr'?'Oyunlar':'Games';
+      };
+      apply(lang);
+      const toggle = document.getElementById('lang-toggle');
+      if (toggle) toggle.addEventListener('click', ()=>{ const l = (document.documentElement.lang||'tr')==='tr'?'en':'tr'; apply(l); });
     })();
   </script>
 </body>
