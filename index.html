@@ -294,7 +294,13 @@
       };
       apply(lang);
       const toggle = document.getElementById('lang-toggle');
-      if (toggle) toggle.addEventListener('click', ()=>{ const l = (document.documentElement.lang||'tr')==='tr'?'en':'tr'; apply(l); });
+      if (toggle) toggle.addEventListener('click', ()=>{
+        // After the main translator updates localStorage/lang, sync to that value
+        setTimeout(()=>{
+          const l = localStorage.getItem('lang') || document.documentElement.lang || 'tr';
+          apply(l);
+        }, 0);
+      });
     })();
   </script>
   <script>
