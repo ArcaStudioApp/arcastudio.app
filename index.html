@@ -295,5 +295,11 @@
       if (toggle) toggle.addEventListener('click', ()=>{ const l = (document.documentElement.lang||'tr')==='tr'?'en':'tr'; apply(l); });
     })();
   </script>
+  <script>
+    (function(){
+      const brand = document.querySelector('.brand');
+      if (brand) { brand.style.cursor = 'pointer'; brand.addEventListener('click', function(){ window.location.href = './index.html'; }); }
+    })();
+  </script>
 </body>
 </html>
