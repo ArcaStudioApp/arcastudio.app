@@ -214,6 +214,8 @@
         const next = (document.documentElement.lang || 'tr') === 'tr' ? 'en' : 'tr';
         setTimeout(()=>injectPolicy(next), 0);
       });
+      const brand = document.querySelector('.brand');
+      if (brand) { brand.style.cursor = 'pointer'; brand.addEventListener('click', function(){ window.location.href = './index.html'; }); }
     })();
   </script>
 </body>
