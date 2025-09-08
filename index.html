@@ -144,6 +144,7 @@
             <h3>Letter Merge</h3>
             <p class="muted" id="games-lm-text">Harfleri birleştirerek ilerlediğin, hızlı ve rahatlatıcı bir bulmaca deneyimi.</p>
             <div style="display:flex; gap:12px; margin-top:8px;">
+              <a class="cta" id="games-lm-play" href="https://play.google.com/store/apps/details?id=com.arcastudio.lettermerge" target="_blank" rel="noopener">Google Play</a>
               <a class="cta" id="games-lm-details" href="letter-merge.html">Detaylar</a>
               <a id="games-lm-privacy" href="privacy-letter-merge.html" class="muted" style="align-self:center;">Gizlilik Politikası</a>
             </div>
@@ -273,19 +274,20 @@
           title:'Oyunlar',
           lead:'Geliştirdiğimiz mobil oyunlar hakkında kısa bilgiler ve bağlantılar.',
           text:'Harfleri birleştirerek ilerlediğin, hızlı ve rahatlatıcı bir bulmaca deneyimi.',
-          details:'Detaylar', privacy:'Gizlilik Politikası'
+          play:'Google Play', details:'Detaylar', privacy:'Gizlilik Politikası'
         };
         const en = {
           title:'Games',
           lead:'Short info and links to the mobile games we build.',
           text:'A fast and relaxing puzzle experience where you merge letters.',
-          details:'Details', privacy:'Privacy Policy'
+          play:'Google Play', details:'Details', privacy:'Privacy Policy'
         };
         const d = l==='tr'?tr:en;
         const gt = (id, val)=>{ const el = document.getElementById(id); if (el) el.textContent = val; };
         gt('games-title', d.title);
         gt('games-lead', d.lead);
         gt('games-lm-text', d.text);
+        const play = document.getElementById('games-lm-play'); if (play) play.textContent = d.play;
         const det = document.getElementById('games-lm-details'); if (det) det.textContent = d.details;
         const pv = document.getElementById('games-lm-privacy'); if (pv) pv.textContent = d.privacy;
         const navGames = document.querySelector('[data-nav-games]'); if (navGames) navGames.textContent = l==='tr'?'Oyunlar':'Games';
