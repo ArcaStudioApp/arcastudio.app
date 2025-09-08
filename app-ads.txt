@@ -1,0 +1,3 @@
+# app-ads.txt for ARCA STUDIO
+# AdMob / Google
+google.com, pub-2091195640231034, DIRECT, f08c47fec0942fa0
