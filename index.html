@@ -109,10 +109,9 @@
       <div class="brand">ARCA STUDIO</div>
       <div class="nav-actions">
         <nav class="nav-links">
-          <a href="/about" data-i18n="nav.about">Hakkımızda</a>
-          <a href="/services" data-i18n="nav.services">Hizmetler</a>
-          <a href="/games" data-i18n="nav.games">Oyunlar</a>
-          <a href="/contact" data-i18n="nav.contact">İletişim</a>
+          <a href="about" data-i18n="nav.about">Hakkımızda</a>
+          <a href="services" data-i18n="nav.services">Hizmetler</a>
+          <a href="contact" data-i18n="nav.contact">İletişim</a>
         </nav>
         <button class="lang" id="lang-toggle" aria-label="Dil / Language">TR</button>
         <button class="lang" id="theme-toggle" aria-label="Tema">🌙</button>
@@ -174,8 +173,8 @@
             <p class="muted" id="games-lm-text">Harfleri birleştirerek ilerlediğin, hızlı ve rahatlatıcı bir bulmaca deneyimi.</p>
             <div style="display:flex; gap:12px; margin-top:8px;">
               <a class="cta" id="games-lm-play" href="https://play.google.com/store/apps/details?id=com.arcastudio.lettermerge" target="_blank" rel="noopener">Google Play</a>
-              <a class="cta" id="games-lm-details" href="/letter-merge.html">Detaylar</a>
-              <a id="games-lm-privacy" href="/privacy-letter-merge.html" class="muted" style="align-self:center;">Gizlilik Politikası</a>
+              <a class="cta" id="games-lm-details" href="letter-merge.html">Detaylar</a>
+              <a id="games-lm-privacy" href="privacy-letter-merge.html" class="muted" style="align-self:center;">Gizlilik Politikası</a>
             </div>
           </div>
         </div>
@@ -298,6 +297,15 @@
   <script>
     (function(){
       const lang = localStorage.getItem('lang') || ((navigator.language||'').toLowerCase().startsWith('tr') ? 'tr' : 'en');
+      // Insert Games nav link if missing
+      const nav = document.querySelector('.nav-links');
+      if (nav && !nav.querySelector('[data-nav-games]')) {
+        const a = document.createElement('a');
+        a.href = '#oyunlar';
+        a.setAttribute('data-nav-games','1');
+        a.textContent = lang === 'tr' ? 'Oyunlar' : 'Games';
+        nav.insertBefore(a, nav.lastElementChild); // before Contact
+      }
       // Apply translations for games section
       const apply = (l)=>{
         const tr = {
@@ -320,6 +328,7 @@
         const play = document.getElementById('games-lm-play'); if (play) play.textContent = d.play;
         const det = document.getElementById('games-lm-details'); if (det) det.textContent = d.details;
         const pv = document.getElementById('games-lm-privacy'); if (pv) pv.textContent = d.privacy;
+        const navGames = document.querySelector('[data-nav-games]'); if (navGames) navGames.textContent = l==='tr'?'Oyunlar':'Games';
       };
       apply(lang);
       const toggle = document.getElementById('lang-toggle');
