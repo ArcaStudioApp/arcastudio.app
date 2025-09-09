@@ -109,9 +109,9 @@
       <div class="brand">ARCA STUDIO</div>
       <div class="nav-actions">
         <nav class="nav-links">
-          <a href="about" data-i18n="nav.about">Hakkımızda</a>
-          <a href="services" data-i18n="nav.services">Hizmetler</a>
-          <a href="contact" data-i18n="nav.contact">İletişim</a>
+          <a href="#hakkimizda" data-i18n="nav.about">Hakkımızda</a>
+          <a href="#hizmetler" data-i18n="nav.services">Hizmetler</a>
+          <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
         </nav>
         <button class="lang" id="lang-toggle" aria-label="Dil / Language">TR</button>
         <button class="lang" id="theme-toggle" aria-label="Tema">🌙</button>
@@ -344,7 +344,7 @@
   <script>
     (function(){
       const brand = document.querySelector('.brand');
-      if (brand) { brand.style.cursor = 'pointer'; brand.addEventListener('click', function(){ window.location.href = '/'; }); }
+      if (brand) { brand.style.cursor = 'pointer'; brand.addEventListener('click', function(){ window.location.href = './index.html'; }); }
     })();
   </script>
 </body>
