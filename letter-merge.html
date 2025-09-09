@@ -41,9 +41,9 @@
     <div class="container nav">
       <div class="brand">ARCA STUDIO</div>
       <nav class="nav-links">
-        <a href="/#hakkimizda" data-i18n="nav.about">Hakkımızda</a>
-        <a href="/#oyunlar" data-i18n="nav.games">Oyunlar</a>
-        <a href="/#iletisim" data-i18n="nav.contact">İletişim</a>
+        <a href="./index.html#hakkimizda" data-i18n="nav.about">Hakkımızda</a>
+        <a href="./index.html#oyunlar" data-i18n="nav.games">Oyunlar</a>
+        <a href="./index.html#iletisim" data-i18n="nav.contact">İletişim</a>
       </nav>
       <div style="display:flex; gap:12px;">
         <button class="lang" id="lang-toggle" aria-label="Dil / Language">TR</button>
@@ -144,7 +144,7 @@
   <script>
     (function(){
       const brand = document.querySelector('.brand');
-      if (brand) { brand.style.cursor = 'pointer'; brand.addEventListener('click', function(){ window.location.href = '/'; }); }
+      if (brand) { brand.style.cursor = 'pointer'; brand.addEventListener('click', function(){ window.location.href = './index.html'; }); }
     })();
   </script>
 </body>
