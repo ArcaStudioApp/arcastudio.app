@@ -168,7 +168,7 @@
         <p class="section-lead" id="games-lead">Geliştirdiğimiz mobil oyunlar hakkında kısa bilgiler ve bağlantılar.</p>
         <div class="grid">
           <div class="card span-6">
-            <div class="screenshot">Ekran görüntüsü (yakında)</div>
+            <div class="screenshot" id="games-lm-screenshot">Ekran görüntüsü (yakında)</div>
             <h3>Letter Merge</h3>
             <p class="muted" id="games-lm-text">Harfleri birleştirerek ilerlediğin, hızlı ve rahatlatıcı bir bulmaca deneyimi.</p>
             <div style="display:flex; gap:12px; margin-top:8px;">
@@ -178,7 +178,7 @@
             </div>
           </div>
           <div class="card span-6">
-            <div class="screenshot">Ekran görüntüsü (yakında)</div>
+            <div class="screenshot" id="games-en-screenshot">Ekran görüntüsü (yakında)</div>
             <h3>Equal Numbers</h3>
             <p class="muted" id="games-en-text">Sayıları eşitleyerek ilerlediğin, eğlenceli ve zihin açıcı bir bulmaca deneyimi.</p>
             <div style="display:flex; gap:12px; margin-top:8px;">
@@ -321,6 +321,7 @@
         const tr = {
           title:'Oyunlar',
           lead:'Geliştirdiğimiz mobil oyunlar hakkında kısa bilgiler ve bağlantılar.',
+          screenshot:'Ekran görüntüsü (yakında)',
           lmText:'Harfleri birleştirerek ilerlediğin, hızlı ve rahatlatıcı bir bulmaca deneyimi.',
           enText:'Sayıları eşitleyerek ilerlediğin, eğlenceli ve zihin açıcı bir bulmaca deneyimi.',
           play:'Google Play', details:'Detaylar', privacy:'Gizlilik Politikası'
@@ -328,6 +329,7 @@
         const en = {
           title:'Games',
           lead:'Short info and links to the mobile games we build.',
+          screenshot:'Screenshot (coming soon)',
           lmText:'A fast and relaxing puzzle experience where you merge letters.',
           enText:'A fun and mind-opening puzzle experience where you equalize numbers.',
           play:'Google Play', details:'Details', privacy:'Privacy Policy'
@@ -336,6 +338,8 @@
         const gt = (id, val)=>{ const el = document.getElementById(id); if (el) el.textContent = val; };
         gt('games-title', d.title);
         gt('games-lead', d.lead);
+        gt('games-lm-screenshot', d.screenshot);
+        gt('games-en-screenshot', d.screenshot);
         gt('games-lm-text', d.lmText);
         gt('games-en-text', d.enText);
         const play = document.getElementById('games-lm-play'); if (play) play.textContent = d.play;
