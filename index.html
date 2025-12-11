@@ -3,191 +3,69 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ARCA STUDIO — Mobil Oyun ve Uygulama</title>
-  <meta name="description" content="ARCA STUDIO: Mobil oyun ve mobil uygulama geliştirme stüdyosu. Minimalist ve performans odaklı dijital deneyimler.">
-  <meta property="og:title" content="ARCA STUDIO">
-  <meta property="og:description" content="Mobil oyun ve mobil uygulama geliştirme stüdyosu.">
+  <title>Equal Numbers — ARCA STUDIO</title>
+  <meta name="description" content="Equal Numbers: Sayıları eşitleyerek ilerlediğin eğlenceli bir bulmaca oyunu.">
+  <meta property="og:title" content="Equal Numbers — ARCA STUDIO">
+  <meta property="og:description" content="Eğlenceli bir sayı eşitleme bulmaca deneyimi.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://arcastudio.app/">
+  <meta property="og:url" content="https://arcastudio.app/equal-numbers.html">
   <meta name="theme-color" content="#0f172a">
-  <meta property="og:image" content="https://arcastudio.app/og.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://arcastudio.app/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0f172a;
-      --fg: #e2e8f0;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
-      --card: #111827;
-      --border: #1f2937;
-    }
-    /* Light theme overrides */
-    :root[data-theme="light"] {
-      --bg: #ffffff;
-      --fg: #0f172a;
-      --muted: #475569;
-      --accent: #2563eb;
-      --card: #ffffff;
-      --border: #e5e7eb;
-    }
+    :root { --bg:#0f172a; --fg:#e2e8f0; --muted:#94a3b8; --accent:#38bdf8; --card:#111827; --border:#1f2937; }
+    :root[data-theme="light"] { --bg:#ffffff; --fg:#0f172a; --muted:#475569; --accent:#2563eb; --card:#ffffff; --border:#e5e7eb; }
     * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--fg); font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"; line-height:1.6; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-    header {
-      position: sticky; top: 0; z-index: 10;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: saturate(180%) blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      height: 64px;
-    }
-    .brand { font-weight: 700; letter-spacing: 0.5px; }
-    .nav a { color: var(--fg); opacity: 0.9; }
-    .nav-links { display: flex; gap: 16px; }
-    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    header { position: sticky; top:0; z-index:10; background:rgba(15,23,42,.7); backdrop-filter: saturate(180%) blur(10px); border-bottom:1px solid var(--border); }
+    .nav { display:flex; align-items:center; justify-content:space-between; height:64px; }
+    .nav-links { display:flex; gap:16px; }
+    .brand { font-weight:700; }
     .lang { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: transparent; color: var(--fg); cursor: pointer; }
-    .lang:hover { border-color: var(--accent); color: var(--accent); }
-    .hero { padding: 96px 0 72px; text-align: center; position: relative; overflow: hidden; }
-    .hero-brand { font-size: 24px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; font-weight: 700; }
-    .hero h1 { font-size: 40px; line-height: 1.2; margin: 0 0 12px; background: linear-gradient(90deg, #38bdf8, #a78bfa); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .hero p { color: var(--muted); margin: 0 auto 28px; max-width: 720px; }
-    .shape { position: absolute; filter: blur(40px); opacity: .35; pointer-events: none; }
-    .shape.s1 { width: 420px; height: 420px; left: -120px; top: -100px; background: radial-gradient(circle at 30% 30%, #38bdf8, transparent 60%); }
-    .shape.s2 { width: 380px; height: 380px; right: -140px; top: 0; background: radial-gradient(circle at 70% 40%, #a78bfa, transparent 60%); }
-    .cta {
-      display: inline-block; padding: 12px 18px; border-radius: 10px;
-      background: var(--accent); color: #0b1324; font-weight: 600;
-      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-    .cta:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(56,189,248,.35); }
-    section { padding: 56px 0; }
-    h2 { font-size: 28px; margin: 0 0 10px; }
-    .section-lead { color: var(--muted); margin: 0 0 28px; }
-    .grid { display: grid; gap: 16px; grid-template-columns: repeat(12, 1fr); }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 22px;
-      transition: border-color .15s ease, transform .15s ease;
-    }
-    .card:hover { border-color: #334155; transform: translateY(-2px); }
-    .screenshot { height: 160px; border-radius: 12px; border: 1px solid var(--border); background: linear-gradient(135deg, rgba(56,189,248,.15), rgba(167,139,250,.15)); display:flex; align-items:center; justify-content:center; color: var(--muted); font-size: 14px; margin-bottom: 12px; }
-    .span-6 { grid-column: span 6; }
-    .span-4 { grid-column: span 4; }
-    .muted { color: var(--muted); }
-    footer { padding: 36px 0; border-top: 1px solid var(--border); color: var(--muted); }
-    @media (max-width: 900px) {
-      .hero h1 { font-size: 32px; }
-      .span-6, .span-4 { grid-column: span 12; }
-      .nav-links { display: none; }
-    }
+    .hero { padding: 72px 0 40px; }
+    h1 { font-size: 36px; margin: 0 0 8px; }
+    .lead { color: var(--muted); margin:0 0 22px; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:22px; }
+    .cta { display:inline-block; padding:12px 18px; border-radius:10px; background:var(--accent); color:#0b1324; font-weight:600; box-shadow:0 8px 24px rgba(56,189,248,.25); transition: transform .15s ease, box-shadow .15s ease; }
+    .cta:hover { transform: translateY(-1px); box-shadow:0 12px 30px rgba(56,189,248,.35); }
+    footer { margin-top: 40px; padding: 36px 0; border-top:1px solid var(--border); color:var(--muted); }
+    @media (max-width: 900px) { h1 { font-size: 28px; } .nav-links { display:none; } }
   </style>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230f172a'/%3E%3Cpath d='M24 68L50 18l26 50H24z' fill='%2338bdf8'/%3E%3C/svg%3E">
 </head>
 <body>
   <header>
     <div class="container nav">
       <div class="brand">ARCA STUDIO</div>
-      <div class="nav-actions">
-        <nav class="nav-links">
-          <a href="#hakkimizda" data-i18n="nav.about">Hakkımızda</a>
-          <a href="#hizmetler" data-i18n="nav.services">Hizmetler</a>
-          <a href="#iletisim" data-i18n="nav.contact">İletişim</a>
-        </nav>
+      <nav class="nav-links">
+        <a href="./index.html#hakkimizda" data-i18n="nav.about">Hakkımızda</a>
+        <a href="./index.html#oyunlar" data-i18n="nav.games">Oyunlar</a>
+        <a href="./index.html#iletisim" data-i18n="nav.contact">İletişim</a>
+      </nav>
+      <div style="display:flex; gap:12px;">
         <button class="lang" id="lang-toggle" aria-label="Dil / Language">TR</button>
         <button class="lang" id="theme-toggle" aria-label="Tema">🌙</button>
       </div>
     </div>
   </header>
 
-  <main>
-    <section class="hero container" aria-labelledby="hero-title">
-      <div class="shape s1"></div>
-      <div class="shape s2"></div>
-      <div class="hero-brand">ARCA STUDIO</div>
-      <h1 id="hero-title" data-i18n="hero.title">Mobil Oyun ve Uygulama Stüdyosu</h1>
-      <a class="cta" href="mailto:info@arcastudio.app">info@arcastudio.app</a>
-    </section>
-
-    <section id="hakkimizda">
-      <div class="container">
-        <h2 data-i18n="about.title">Hakkımızda</h2>
-        <p class="section-lead" data-i18n="about.lead">Minimalist tasarım, yüksek performans ve kullanıcı odaklı yaklaşım. Ürünlerimizi veriye ve geri bildirime göre sürekli geliştiriyoruz.</p>
-        <div class="grid">
-          <div class="card span-6">
-            <h3 data-i18n="about.vision.title">Vizyon</h3>
-            <p class="muted" data-i18n="about.vision.text">Mobilde global ölçekte sevilen, erişilebilir ve sürdürülebilir ürünler üretmek.</p>
-          </div>
-          <div class="card span-6">
-            <h3 data-i18n="about.approach.title">Yaklaşım</h3>
-            <p class="muted" data-i18n="about.approach.text">Hızlı prototipleme, yalın tasarım ve ölçülebilir hedefler ile değer odaklı geliştirme.</p>
-          </div>
-        </div>
+  <main class="container">
+    <section class="hero">
+      <h1 data-i18n="game.title">Equal Numbers</h1>
+      <p class="lead" data-i18n="game.lead">Sayıları eşitleyerek ilerlediğin, eğlenceli ve zihin açıcı bir bulmaca deneyimi.</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="cta" id="play-link" href="https://play.google.com/store/apps/details?id=com.arcastudio.equalnumbers" target="_blank" rel="noopener" data-i18n="game.play">Google Play</a>
+        <a href="privacy-equal-numbers.html" class="muted" data-i18n="game.privacy">Gizlilik Politikası</a>
       </div>
     </section>
 
-    <section id="hizmetler">
-      <div class="container">
-        <h2 data-i18n="services.title">Hizmetler</h2>
-        <p class="section-lead" data-i18n="services.lead">Uçtan uca geliştirme: fikir doğrulama, tasarım, geliştirme, test ve yayın.</p>
-        <div class="grid">
-          <div class="card span-4">
-            <h3 data-i18n="services.game.title">Mobil Oyun</h3>
-            <p class="muted" data-i18n="services.game.text">Hyper‑casual ve casual türlerde hızlı prototipleme, core‑loop tasarımı, canlıya alma ve iterasyon.</p>
-          </div>
-          <div class="card span-4">
-            <h3 data-i18n="services.app.title">Mobil Uygulama</h3>
-            <p class="muted" data-i18n="services.app.text">iOS ve Android için performanslı, erişilebilir ve modern uygulamalar (native veya cross‑platform).</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="oyunlar">
-      <div class="container">
-        <h2 id="games-title">Oyunlar</h2>
-        <p class="section-lead" id="games-lead">Geliştirdiğimiz mobil oyunlar hakkında kısa bilgiler ve bağlantılar.</p>
-        <div class="grid">
-          <div class="card span-6">
-            <div class="screenshot">Ekran görüntüsü (yakında)</div>
-            <h3>Letter Merge</h3>
-            <p class="muted" id="games-lm-text">Harfleri birleştirerek ilerlediğin, hızlı ve rahatlatıcı bir bulmaca deneyimi.</p>
-            <div style="display:flex; gap:12px; margin-top:8px;">
-              <a class="cta" id="games-lm-play" href="https://play.google.com/store/apps/details?id=com.arcastudio.lettermerge" target="_blank" rel="noopener">Google Play</a>
-              <a class="cta" id="games-lm-details" href="letter-merge.html">Detaylar</a>
-              <a id="games-lm-privacy" href="privacy-letter-merge.html" class="muted" style="align-self:center;">Gizlilik Politikası</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="iletisim">
-      <div class="container">
-        <h2 data-i18n="contact.title">İletişim</h2>
-        <p class="section-lead" data-i18n="contact.lead">Bir proje veya fikir mi var? Bize yazın.</p>
-        <div class="card">
-          <p><span data-i18n="contact.emailLabel">E-posta</span>: <a href="mailto:info@arcastudio.app">info@arcastudio.app</a></p>
-        </div>
+    <section>
+      <div class="card">
+        <h2 data-i18n="game.about">Oyun Hakkında</h2>
+        <p data-i18n="game.desc">Stratejik düşünme, hızlı kararlar ve artan zorluk. Equal Numbers, sayıları eşitleyerek ilerlediğin, zihnini çalıştıran eğlenceli bir bulmaca deneyimi sunar.</p>
       </div>
     </section>
   </main>
@@ -202,68 +80,43 @@
     (function() {
       const translations = {
         tr: {
-          meta: { title: 'ARCA STUDIO — Mobil Oyun ve Uygulama', desc: 'ARCA STUDIO: Mobil oyun ve mobil uygulama geliştirme stüdyosu. Minimalist ve performans odaklı dijital deneyimler.' },
-          nav: { about: 'Hakkımızda', services: 'Hizmetler', contact: 'İletişim' },
-          hero: { title: 'Mobil Oyun ve Uygulama Stüdyosu', lead: 'Mobilde yalın, akıcı ve keyifli deneyimler tasarlıyoruz. Fikirleri hızla prototipe çevirip, veriye dayanarak geliştiriyor ve dünyaya sunuyoruz.' },
-          about: {
-            title: 'Hakkımızda',
-            lead: 'Minimalist tasarım, yüksek performans ve kullanıcı odaklı yaklaşım. Ürünlerimizi veriye ve geri bildirime göre sürekli geliştiriyoruz.',
-            vision: { title: 'Vizyon', text: 'Mobilde global ölçekte sevilen, erişilebilir ve sürdürülebilir ürünler üretmek.' },
-            approach: { title: 'Yaklaşım', text: 'Hızlı prototipleme, yalın tasarım ve ölçülebilir hedefler ile değer odaklı geliştirme.' }
+          nav: { about: 'Hakkımızda', games: 'Oyunlar', contact: 'İletişim' },
+          game: {
+            title: 'Equal Numbers',
+            lead: 'Sayıları eşitleyerek ilerlediğin, eğlenceli ve zihin açıcı bir bulmaca deneyimi.',
+            play: 'Google Play',
+            privacy: 'Gizlilik Politikası',
+            about: 'Oyun Hakkında',
+            desc: 'Stratejik düşünme, hızlı kararlar ve artan zorluk. Equal Numbers, sayıları eşitleyerek ilerlediğin, zihnini çalıştıran eğlenceli bir bulmaca deneyimi sunar.'
           },
-          services: {
-            title: 'Hizmetler',
-            lead: 'Uçtan uca geliştirme: fikir doğrulama, tasarım, geliştirme, test ve yayın.',
-            game: { title: 'Mobil Oyun', text: 'Hyper‑casual ve casual türlerde hızlı prototipleme, core‑loop tasarımı, canlıya alma ve iterasyon.' },
-            app: { title: 'Mobil Uygulama', text: 'iOS ve Android için performanslı, erişilebilir ve modern uygulamalar (native veya cross‑platform).' },
-            consult: { title: 'Ürün Danışmanlığı', text: 'Pazar analizi, MVP planlama, büyüme stratejisi ve analitik altyapı kurulumu.' }
-          },
-          contact: { title: 'İletişim', lead: 'Bir proje veya fikir mi var? Bize yazın.', emailLabel: 'E-posta' },
           footer: '© {year} ARCA STUDIO — Tüm hakları saklıdır.'
         },
         en: {
-          meta: { title: 'ARCA STUDIO — Mobile Games & Apps', desc: 'ARCA STUDIO: Mobile game and app development studio. Minimalist, performance‑oriented digital experiences.' },
-          nav: { about: 'About', services: 'Services', contact: 'Contact' },
-          hero: { title: 'Mobile Game and App Studio', lead: 'We craft simple, fluid and delightful mobile experiences. From idea to launch, we prototype fast, iterate on data and ship to the world.' },
-          about: {
-            title: 'About',
-            lead: 'Minimal design, high performance, and a user‑first approach. We iterate continuously based on data and feedback.',
-            vision: { title: 'Vision', text: 'Build accessible, sustainable products loved globally on mobile.' },
-            approach: { title: 'Approach', text: 'Rapid prototyping, lean design and measurable goals for value‑driven development.' }
+          nav: { about: 'About', games: 'Games', contact: 'Contact' },
+          game: {
+            title: 'Equal Numbers',
+            lead: 'A fun and mind-opening puzzle experience where you equalize numbers.',
+            play: 'Google Play',
+            privacy: 'Privacy Policy',
+            about: 'About the Game',
+            desc: 'Strategic thinking, quick decisions, and increasing challenge. Equal Numbers offers a fun puzzle experience that exercises your mind as you equalize numbers.'
           },
-          services: {
-            title: 'Services',
-            lead: 'End‑to‑end delivery: validation, design, development, testing and launch.',
-            game: { title: 'Mobile Games', text: 'Rapid prototyping for hyper‑casual and casual, core loop design, go‑live and iteration.' },
-            app: { title: 'Mobile Apps', text: 'High‑performance, accessible, modern apps for iOS and Android (native or cross‑platform).' },
-            consult: { title: 'Product Consulting', text: 'Market analysis, MVP planning, growth strategy and analytics setup.' }
-          },
-          contact: { title: 'Contact', lead: 'Have a project or idea? Write to us.', emailLabel: 'Email' },
           footer: '© {year} ARCA STUDIO — All rights reserved.'
         }
       };
 
-      function get(obj, path) {
-        return path.split('.').reduce((o, k) => (o && o[k] != null) ? o[k] : undefined, obj);
-      }
-
+      function get(obj, path) { return path.split('.').reduce((o,k)=> (o && o[k]!=null)?o[k]:undefined, obj); }
       function applyTranslations(lang) {
         const dict = translations[lang] || translations.tr;
         document.documentElement.lang = lang;
-        document.title = dict.meta.title;
-        const metaDesc = document.querySelector('meta[name="description"]');
-        if (metaDesc) metaDesc.setAttribute('content', dict.meta.desc);
+        document.title = `Equal Numbers — ARCA STUDIO`;
         document.querySelectorAll('[data-i18n]').forEach(el => {
           const key = el.getAttribute('data-i18n');
-          const value = get(dict, key);
-          if (typeof value === 'string') {
-            el.textContent = value;
-          }
+          const val = get(dict, key);
+          if (typeof val === 'string') el.textContent = val;
         });
         const footer = document.getElementById('footer-text');
-        if (footer && dict.footer) {
-          footer.textContent = dict.footer.replace('{year}', String(new Date().getFullYear()));
-        }
+        if (footer && dict.footer) footer.textContent = dict.footer.replace('{year}', String(new Date().getFullYear()));
         const toggle = document.getElementById('lang-toggle');
         if (toggle) toggle.textContent = lang.toUpperCase();
       }
@@ -275,13 +128,7 @@
       localStorage.setItem('lang', current);
 
       const toggle = document.getElementById('lang-toggle');
-      if (toggle) {
-        toggle.addEventListener('click', () => {
-          current = current === 'tr' ? 'en' : 'tr';
-          localStorage.setItem('lang', current);
-          applyTranslations(current);
-        });
-      }
+      if (toggle) toggle.addEventListener('click', () => { current = current==='tr'?'en':'tr'; localStorage.setItem('lang', current); applyTranslations(current); });
     })();
   </script>
   <script>
@@ -296,56 +143,11 @@
   </script>
   <script>
     (function(){
-      const lang = localStorage.getItem('lang') || ((navigator.language||'').toLowerCase().startsWith('tr') ? 'tr' : 'en');
-      // Insert Games nav link if missing
-      const nav = document.querySelector('.nav-links');
-      if (nav && !nav.querySelector('[data-nav-games]')) {
-        const a = document.createElement('a');
-        a.href = '#oyunlar';
-        a.setAttribute('data-nav-games','1');
-        a.textContent = lang === 'tr' ? 'Oyunlar' : 'Games';
-        nav.insertBefore(a, nav.lastElementChild); // before Contact
-      }
-      // Apply translations for games section
-      const apply = (l)=>{
-        const tr = {
-          title:'Oyunlar',
-          lead:'Geliştirdiğimiz mobil oyunlar hakkında kısa bilgiler ve bağlantılar.',
-          text:'Harfleri birleştirerek ilerlediğin, hızlı ve rahatlatıcı bir bulmaca deneyimi.',
-          play:'Google Play', details:'Detaylar', privacy:'Gizlilik Politikası'
-        };
-        const en = {
-          title:'Games',
-          lead:'Short info and links to the mobile games we build.',
-          text:'A fast and relaxing puzzle experience where you merge letters.',
-          play:'Google Play', details:'Details', privacy:'Privacy Policy'
-        };
-        const d = l==='tr'?tr:en;
-        const gt = (id, val)=>{ const el = document.getElementById(id); if (el) el.textContent = val; };
-        gt('games-title', d.title);
-        gt('games-lead', d.lead);
-        gt('games-lm-text', d.text);
-        const play = document.getElementById('games-lm-play'); if (play) play.textContent = d.play;
-        const det = document.getElementById('games-lm-details'); if (det) det.textContent = d.details;
-        const pv = document.getElementById('games-lm-privacy'); if (pv) pv.textContent = d.privacy;
-        const navGames = document.querySelector('[data-nav-games]'); if (navGames) navGames.textContent = l==='tr'?'Oyunlar':'Games';
-      };
-      apply(lang);
-      const toggle = document.getElementById('lang-toggle');
-      if (toggle) toggle.addEventListener('click', ()=>{
-        // After the main translator updates localStorage/lang, sync to that value
-        setTimeout(()=>{
-          const l = localStorage.getItem('lang') || document.documentElement.lang || 'tr';
-          apply(l);
-        }, 0);
-      });
-    })();
-  </script>
-  <script>
-    (function(){
       const brand = document.querySelector('.brand');
       if (brand) { brand.style.cursor = 'pointer'; brand.addEventListener('click', function(){ window.location.href = './index.html'; }); }
     })();
   </script>
 </body>
 </html>
+
+
