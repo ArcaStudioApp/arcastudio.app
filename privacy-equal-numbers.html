@@ -33,8 +33,9 @@
     <div class="container nav">
       <div class="brand">ARCA STUDIO</div>
       <nav class="nav-links">
+        <a href="./index.html#hakkimizda" data-i18n="nav.about">Hakkımızda</a>
         <a href="./index.html#oyunlar" data-i18n="nav.games">Oyunlar</a>
-        <a href="./index.html" data-i18n="nav.equalNumbers">Equal Numbers</a>
+        <a href="./index.html#iletisim" data-i18n="nav.contact">İletişim</a>
       </nav>
       <div style="display:flex; gap:12px;">
         <button class="lang" id="lang-toggle" aria-label="Dil / Language">TR</button>
@@ -137,11 +138,11 @@
 
       const translations = {
         tr: {
-          nav: { games: 'Oyunlar', equalNumbers: 'Equal Numbers' },
+          nav: { about: 'Hakkımızda', games: 'Oyunlar', contact: 'İletişim' },
           footer: '© {year} ARCA STUDIO — Tüm hakları saklıdır.'
         },
         en: {
-          nav: { games: 'Games', equalNumbers: 'Equal Numbers' },
+          nav: { about: 'About', games: 'Games', contact: 'Contact' },
           footer: '© {year} ARCA STUDIO — All rights reserved.'
         }
       };
